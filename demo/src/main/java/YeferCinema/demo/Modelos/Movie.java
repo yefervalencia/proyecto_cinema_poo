@@ -1,6 +1,8 @@
 package YeferCinema.demo.Modelos;
+
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -8,10 +10,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document()
 public class Movie {
     @Id String _id;
-
     String name;
     int productionYear;
     String type;
+    @DBRef
+    private Show myShow;
 
     public Movie(){
 
@@ -29,6 +32,14 @@ public class Movie {
 
     public String getName() {
         return name;
+    }
+
+    public Show getMyShow() {
+        return myShow;
+    }
+
+    public void setMyShow(Show myShow) {
+        this.myShow = myShow;
     }
 
     public void setName(String name) {

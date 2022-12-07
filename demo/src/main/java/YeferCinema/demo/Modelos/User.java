@@ -1,6 +1,7 @@
 package YeferCinema.demo.Modelos;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -8,12 +9,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document()
 public class User {
     @Id String _id;
-
     String identificationCard;
     String name;
     String email;
     int birthYear;
 
+    @DBRef
+    private Cinema myCinema;
     public User(){
 
     }
@@ -23,6 +25,13 @@ public class User {
         this.name = name;
         this.email = email;
         this.birthYear = birthYear;
+    }
+    public Cinema getMyCinema() {
+        return myCinema;
+    }
+
+    public void setMyCinema(Cinema myCinema) {
+        this.myCinema = myCinema;
     }
 
     public String get_id() {

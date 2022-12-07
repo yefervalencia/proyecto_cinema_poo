@@ -1,7 +1,8 @@
 package YeferCinema.demo.Modelos;
+
 import lombok.Data;
-import org.springframework.dao.DataAccessException;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -10,16 +11,33 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Chair {
     @Id
     String _id;
-
     char letter;
     int number;
+    @DBRef
+    private MovieRoom myMovieRoom;
+    @DBRef
+    private Ticket myTicket;
 
     public Chair() {
     }
-
     public Chair(char letter, int number) {
         this.letter = letter;
         this.number = number;
+    }
+    public Ticket getMyTicket() {
+        return myTicket;
+    }
+
+    public void setMyTicket(Ticket myTicket) {
+        this.myTicket = myTicket;
+    }
+
+    public MovieRoom getMyMovieRoom() {
+        return myMovieRoom;
+    }
+
+    public void setMyMovieRoom(MovieRoom myMovieRoom) {
+        this.myMovieRoom = myMovieRoom;
     }
 
     public String get_id() {
